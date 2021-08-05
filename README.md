@@ -8,9 +8,9 @@ git에는 크게 3가지의 작업환경이 나눠져 있다
 
 - `working directory`
   - 프로젝트의 파일드을 수정하는, 작업하고 있는 워킹 디렉토리
-- `staging area`
+- `staging area` (add)
   - 어느정도 작업하다가 버전 히스토리에 저장할 준비가 되어있는 파일들을 옮겨놓는 스테이징 에리어
-- `.git directory`
+- `.git directory` (commit)
   - 버전의 히스토리를 가지고 있는 깃 리파짓토리 (깃 디렉토리)
 
 각각의 commit에는 스냅샷된 정보들을 기반으로 해서 고유한 hash code가 부여됨
