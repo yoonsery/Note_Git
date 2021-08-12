@@ -59,3 +59,18 @@ message, author, date, time...
 
 이렇게 수정하고 아래부분 name, email의 아래 입력창에 커밋메시지 작성하고 커밋하면 된다
 그 아래 origin/main으로 바뀐 내용 즉시 push 체크하면 바로 리모트에 반영됨
+
+#### log
+
+`a ⟵ b ⟵ c ⟵ d ` 라는 커밋이 있다면 (이 줄기가 main 브랜치)
+
+`head`는 지금 내가 있는, 내가 바라보는 시점의 버전을 가리킴
+`head~1`은 지금 있는 현재 헤드의 이전 버전을 가르킴
+`head~2`는 지금 헤드가 있는 곳에서 두번째 부모를 찾아가는 것과 동일
+
+이렇게 만들어진 커밋들은 내가 원하는 곳(시점)으로 언제든지 돌아갈 수 있다
+만약 commit b로 돌아가고 싶다면 `git checkout b`로 갈 수 있다, head는 b 가 됨
+`git checkout 해시코드` : 여기서 해쉬코드는 돌아가고싶은 커밋의 해시코드 입력
+그럼 switching to 해시코드라고 알려주고 head가 바뀐게 보임
+
+다시 git checkout main/master로 돌아오면 된당

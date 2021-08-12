@@ -155,3 +155,42 @@ git commit -m "commit message"  # 커밋메시지와 함께 commit staged files
 git commit -am "commit message"  # staging area와 working directory에 있는 모든 파일들을 커밋메시지와 함께 커밋
 
 ```
+
+### Log, History
+
+```bash
+git log  # list of commits,  q로 빠져나오기
+
+# 수정된 파일의 내용도 확인할 수 있음 (git diff처럼..)
+git log --patch
+git log -p
+
+# 간편하게 보려면, (해시코드와 커밋메시지만 나옴)
+git log --oneline
+git log --oneline --reverse  # 오래된 커밋부터 순서대로 보임
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
