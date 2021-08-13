@@ -61,6 +61,10 @@ git config --global -e
 
 ```
 
+---
+
+# 기본 명령어
+
 ## Basic
 
 ### Git init
@@ -266,10 +270,57 @@ git push origin --tags
 
 # 특정태그를 삭제하고 싶으면
 git push origin --delete 해당태그명
-
 ```
 
+---
+
+# 브랜치의 모든 것 ᛘ
+
+## Branch
+
 ```bash
+git branch  # repository에 있는 branch들을 확인할 수 있다
+git branch --all  # 원격연결이 되어있다면 서버에 있는 브랜치까지 확인가능
+git branch -v  # 각 브랜치들의 최신 커밋을 확인가능
+
+git branch new-branch  # new-branch 생성
+# (뉴브랜치라는 새로운 포인터가 현재 커밋(HEAD)을 가리키고 있음, 만들어지기만 했을 뿐 현재 브랜치는 main인 상황)
+
+
+# 다른 브랜치로 이동하려면?
+git switch 브랜치명
+git checkout 브랜치명 # checkout은 원하는 버전(브랜치명 대신 해시코드 입력)으로도 이동 가능
+
+# 새로운 브랜치를 만들고 그 브랜치로 이동하려면? (create & switch)
+git switch -C 브랜치명
+git checkout -b 브랜치명
+
+
+# 현재 브랜치에 merge된 브랜치들을 확인할 수 있다
+git branch --merged
+
+# merge가 되지않은 브랜치 확인가능
+git branch --no-merged
+
+
+# 브랜치 삭제
+git branch -d 브랜치명
+
+# github에 있는 원격브랜치에서도 삭제할 경우
+git push origin --delete 브랜치명
+
+
+# 브랜치 이름 변경
+git branch --move name new-name  # 이름을 name 에서 new-name으로 변경
+
+# 이름 변경한 사항을 원격에도 업데이트하려면
+git push --set-upstream origin new-name
+
+
+# main브랜치와 new-branch 사이에 있는 커밋들만 확인가능
+git log main..new-branch
+git hist main..new-branch
+git diff main..new-branch  # 코드들을 보고싶을 때
 
 ```
 
