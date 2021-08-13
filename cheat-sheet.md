@@ -171,15 +171,101 @@ git log --oneline --reverse  # 오래된 커밋부터 순서대로 보임
 
 ```
 
+#### Formating
+
+<!-- 원하는 포맷형식으로 로그를 볼 수 있다 -->
+
 ```bash
+git log --pretty=oneline  # 해시코드 전체가 원라인으로 보여짐
+git log --pretty=format: "%h %an"  # 해시코드와 저자의 이름만 보기(누가 커밋했는지)
+git log --pretty=format: "%h %an %ar %s"  # 해시코드, 저자, 커밋된 날짜, 타이틀
+
+# 어디서부터 어떤 커밋이 특정 브랜치에 해당하는지 확인하려면
+git log (--oneline) --graph  -all  # oneline은 생략가능해서 괄호해놓음
+
+# 📌  엘리의 커스텀 프리티포맷_ 날짜 | 해시코드 | 타이틀 | 저자 | 브랜치 정보
+git log --graph --all --pretty=format:'%C(yellow)[%ad]%C(reset) %C(green)[%h]%C(reset) | %C(white)%s %C(bold red){{%an}}%C(reset) %C(blue)%d%C(reset)' --date=short
+
+# hist 로 단축어 설정
+git config --global alias.hist "log --graph --all --pretty=format:'%C(yellow)[%ad]%C(reset) %C(green)[%h]%C(reset) | %C(white)%s %C(bold red){{%an}}%C(reset) %C(blue)%d%C(reset)' --date=short"
 
 ```
 
-```bash
+#### Filtering
 
+```bash
+git log -3  # show only the last 3 commits
+git log oneline -4
+git log --author="sery"  # 커밋 작성자가 sery인 것만 보기
+
+git log --before="2021-05-09"
+git log --after="one week ago"
+
+git log --grep="project"  # 커밋 타이틀중에 "project"가 포함된 커밋보기
+git log -S "about"  # 소스코드 컨텐츠안에서 "about"이 포함된 것 찾기 (대문자 S 유의)
+git log -S "about" -p  # --patch(-p)를 이용해 변경사항의 내용을 자세히 보여줌
+
+
+# History of a file
+
+# 해당 파일별로 log를 볼 수 있다
+git log file.text
+git log -p file.text  # 좀 더 자세한 내용을 볼 수 있음
+git log -s file.text  # 간단한 상태만 확인
+
+
+# HEAD, Hash code
+git log HEAD  # git log와 동일
+git log HEAD~n  # git log 헤드에서 n번째 부모부터 보기 (~1은 이전, ~2는 두번째 이전 커밋부터)
+
+
+# Viewing a commit
+git show 해시코드  # 해당하는 커밋의 내용을 정확하게 확인할 수 있다
+
+# 만약 해당 커밋에 여러가지 파일이 있어서 특정 파일에 관련한 내용만 보고싶으면?
+git show 해시코드:file.text
+
+
+# Comparing
+git diff 해시1 해시2  # 해시1, 해시2에 해당하는 두가지 커밋을 비교할 수 있다
+git diff 해시1 해시2 file.text  # 해당 파일의 변경사항 비교
 ```
 
+### Tagging
+
 ```bash
+git tag 버전  # 버전이라는 태그 생성됨
+git tag v1.0.0 해시코드  # 해시코드에 해당하는 커밋에 "v1.0.0"라고 태그를 지정
+
+# 태그에 관련된 릴리즈 정보를 포함하고 싶다면
+git tag v1.0.0 해시코드 -am "Write Release note..."
+
+# 태그에 포함된 릴리즈 메시지를 확인하려면
+git show 태그이름
+
+# 리파지토리에 있는 모든 tag들을 확인하려면
+git tag
+
+# 태그 리스트중에 특정한 문자열이 있는 것만 확인하고 싶으면 (예시_ v1.0.  | v2.*)
+git tag -l "v1.0.*"
+
+# 실수로 만든 태그를 삭제하려면
+git tag -d 태그이름
+
+git checkout 태그이름  # 해당 태그로 이동
+
+# 태그를 checkout 하면서 새로운 branch를 만들고 싶다면  (해당태그로 이동하면서 새로운 브랜치 생성)
+git checkout -b 브랜치명 태그이름
+
+
+# 만든 태그를 서버에도 업로드해서 연동하고 싶다면
+git push origin 태그이름
+
+# 모든 태그를 서버와 싱크하고 싶다면
+git push origin --tags
+
+# 특정태그를 삭제하고 싶으면
+git push origin --delete 해당태그명
 
 ```
 
