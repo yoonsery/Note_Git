@@ -399,11 +399,16 @@ git merge feature-b
 # merge된 branch를 모두 삭제해줌
 git branch -d feature-a
 git branch -d feature-b
-
-
 ```
 
+rebase --onto
+
 ```bash
+# feature-a에서 파생된 feature-b 브랜치가 main브랜치에서 바로 파생되는 걸로 바뀜
+git rebase --onto main feature-a feature-b
+
+git checkout main # 메인브랜치로 이동
+git merge feature-b  # main브랜치가 최신이면 바로 ff merge됨
 
 ```
 
