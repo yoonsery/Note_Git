@@ -378,7 +378,28 @@ git merge --continue
 # 그리고 git merge --contuinue 해주면 된다
 ```
 
+### Rebase
+
+다른 개발자와 같은 브랜치를 작업하고 있거나
+이미 히스토리를 서버에 업로드했다면 rebase 사용하면 안된다 (로컬에서만!)
+
 ```bash
+# 우선 feature-b branch로 이동 후
+git checkout feature-b
+
+# rebase 실행
+git rebase main
+
+# 다시 메인 브랜치로 이동
+git checkout main
+
+# feature-b 를 fast-forward merge 한다
+git merge feature-b
+
+# merge된 branch를 모두 삭제해줌
+git branch -d feature-a
+git branch -d feature-b
+
 
 ```
 
