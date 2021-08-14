@@ -109,3 +109,18 @@ merge가 완벽하게 됐다면 더이상 필요없는 feature A 브랜치는 �
 feature A에 있는 모든 커밋을 다 merge할 필요가 없다
 feature A에 있는 커밋들을 합해서 새로운 하나의 커밋을 만든 다음에
 그 커밋만 깔끔하게 메인 브랜치로 가져온다 (회사/팀마다 다름)
+
+### Merge
+
+`Fast-forward merges`: merge중 가장 깔끔하고 간단
+새로운 브랜치가 생성된 이후에 main 브랜치에 변동사항이 없다면,
+merge를 할 때 main이 가리키고 있는 포인터를 옮겨주기만 하면 된다 (프린트물 인쇄참조)
+그리고 브랜치 feature A를 삭제해주면 끝
+
+단점: 히스토리에 merge가 되었다는 사실이 남지 않음
+
+만약 히스토리에 merge된 흔적을 남기고 싶으면
+`git merge --no-ff 브랜치명`
+별도의 merge commit을 만들어서 main에 merge함
+
+`Three-way merges`:

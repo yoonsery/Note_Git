@@ -324,6 +324,36 @@ git diff main..new-branch  # 코드들을 보고싶을 때
 
 ```
 
+### Merge
+
+Fast-forward merge
+
+```bash
+git merge featureA  # featureA를 지금 브랜치에 merge함
+git branch -d featureA  # (merge 후 필요없어진) featureA 브랜치를 삭제함
+
+# featureA를 fast-forward 방법 말고 commit을 남기고 merge해줘
+git merge --no-ff featureC  # merge 커밋메시지 적는 창이 뜨고 그 창을 닫으면 실행됨
+git branch -d featureC  # 브랜치 삭제
+```
+
+Three-way merges
+
+```bash
+# main브랜치에 커밋사항이 있어서 ff merge가 되지 않을 때
+git merge featureB  # merge commit message를 입력하라는 창이 뜨고 커밋된 이후 merge된다
+```
+
+conflict
+
+```bash
+
+```
+
+```bash
+
+```
+
 ```bash
 
 ```
