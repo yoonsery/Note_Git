@@ -326,7 +326,7 @@ git diff main..new-branch  # 코드들을 보고싶을 때
 
 ### Merge
 
-Fast-forward merge
+#### Fast-forward merge
 
 ```bash
 git merge featureA  # featureA를 지금 브랜치에 merge함
@@ -344,10 +344,38 @@ Three-way merges
 git merge featureB  # merge commit message를 입력하라는 창이 뜨고 커밋된 이후 merge된다
 ```
 
-conflict
+#### conflict
 
 ```bash
+git merge 브랜치명  # 에러가 뜬다
+git st # 확인해보면 양쪽에서 수정해서 충돌했다고 알려줌
+cat 충돌한-파일.확장자  # 충돌한 파일을 열어보면 어느 부분이 충돌했는지 보여줌
 
+# 충돌사항만 해결해야함! 다른 코드 수정하면 🙅🏻
+
+# 해결방법 1. 수동
+open file.text  # 텍스트 편집기가 열리고 직접 수정함 (<<<HEAD, =====, >>>feature 도 일일이 다 삭제)
+# 파일 저장후 끄고 나서 ① 또는 ②를 실행함
+
+# ① merge 를 취소하려면
+git merge --abort
+
+# ② merge를 계속 진행하려면, conflict를 해결했다고 알려주고
+git add file.text
+
+git merge --continue  # ff merge 가 아니므로 merge commit이 만들어지고 진행됨
+
+
+# 해결방법 2. VS Code로 해결하기  (config에서 설정해줌)
+git merge 브랜치명  # 충돌했다고 경고뜬다
+git mergetool # vscode가 열리고  <<<<< HEAD 위에 버튼들로 간편히 해결가능
+
+# 버튼클릭해서 해결하고 저장 후 창을 끄고, 이어서
+git merge --continue
+
+# P4Merge로 mergetool변경해놨음
+# 둘다 선택은 shift키, 나가고 나서 터미널 원상태로 돌리려면 control + c
+# 그리고 git merge --contuinue 해주면 된다
 ```
 
 ```bash

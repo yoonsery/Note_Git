@@ -123,4 +123,24 @@ merge를 할 때 main이 가리키고 있는 포인터를 옮겨주기만 하면
 `git merge --no-ff 브랜치명`
 별도의 merge commit을 만들어서 main에 merge함
 
-`Three-way merges`:
+`Three-way merges` ff merge가 되지 않을 때 merge commit 이 이뤄진 후 merge된다
+
+#### merge conflict
+
+git이 merge를 할 때 충돌이 났을 때 발생
+
+- 두 가지의 branch에서 동일한 파일 수정했다면? 어떤 내용을 반영해야하지?
+
+- 수동으로 해결
+- vscode을 이용해 해결
+- P4Merge로 해결하기
+
+`git mergetool` p4merge가 실행되게 설정 후
+실행하면 창이 뜬다 오른쪽의 초록색 LOCAL은 대개 내가 지금 작업중인 branch를 의미
+왼쪽의 파란색 REMOTE는 merge하고자 하는 branch
+
+아래창 수정하려는 부분은 파란색 클릭하면 리모트, 녹색 클릭하면 로컬 내용을 반영하고
+둘다 선택하고 싶으면 `shift`키를 누른채 클릭하면 된다
+그리고 저장하고 나가면 터미널에서 여전히 명령서 수행중 -> `control` + `C`로 종료함
+`git st`하면 modified되었다고 나옴
+`git merge --continue` 해주면 커밋메시지창 뜨고 저장해서 닫으면 merge완료됨
