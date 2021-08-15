@@ -409,6 +409,86 @@ git rebase --onto main feature-a feature-b
 
 git checkout main # 메인브랜치로 이동
 git merge feature-b  # main브랜치가 최신이면 바로 ff merge됨
+```
+
+### Cherry picking
+
+```bash
+# 가져오려는 베이스 브랜치에가서 (여기선 main)
+git cherry-pick 해시코드
+```
+
+## Stashing
+
+```bash
+git stash push  # 아무 타이틀 없이 stash stack에 저장
+git stash push -m "message"  # message라는 타이틀로 저장됨 그러면
+
+# [ Saved working directory and index state On main: message ]
+# 라고 터미널이 알려준다 여기서 index는 staging area를 가리킨다
+
+# 이 상태에서 다시 파일을 수정하다가, git st를 해보면 파일은 수정이 되었지만 staging area에는 가지 않았다
+# git add . 로 staging area에 추가한 다음 다시 git st로 확인하면 파일이 수정되었고 staging area에 가있음
+# 이 때, staging area(= index)에 있는 것을 유지하면서 stash에 저장하고 싶다면?
+
+git stash push -m "message" --keep-index
+
+# 만약 새로운 파일을 만들고 stash를 하게 되면 stash가 되지 않음
+# untracking 되지 않은 파일은 자동으로 stash에 저장되지 않는다
+
+# 아직 tracking되지 않은 파일들도 stash에 포함하고 싶다면?
+git stash -u
+
+# stash 한 내용들을 확인하려면?
+git stash list
+
+# 이렇게 리스트가 나온다
+# stash@{0}: WIP on master: 3345766 feature a
+# stash@{1}: WIP on master: 3345766 feature a
+# stash@{2}: On master: second try
+# stash@{3}: On master: first try
+
+#여기서 @뒤에 숫자는 stash의 id 같은 것
+
+# stash에서 어떤 것이 수정되었는지 확인하고 싶으면?
+git stash show stash@{3}  # stash@{id}을 넣어주면 된다
+git stash show stash@{3} -p # 좀 더 자세한 사항 확인가능
+
+#다시 stash로 보낸 업무를 하려면? 작업하고자 하는 stash id를 복사한 다음
+git stash apply stash@{id} # apply까지만 작성하면 stack에서 제일 위에 있는 stash가 적용된다
+
+git stash pop  # 제일 위에 있는 내용이 working directory로 옮겨져 나온다
+
+# stash를 적용하면서 stash list는 그대로 유지하고 싶다면 apply
+# stash를 하나씩 가지고 나오면서 목록에서 제거하고 싶다면 pop
+
+# 더이상 필요없는 stash id를 삭제하고 싶다면?
+git stash drop stash@{id}
+
+# stash 전체를 다 지우고 싶다면?
+git stash clear
+
+# stash에 있는 것을 적용하면서(가져오면서) 새로운 branch를 만들고 싶다면?
+git stash branch 브랜치명
+
+# stash를 이용해서, 브랜치들 간에 전환할 때 현재 작업하고 있는 내용들을 저장하거나
+# 새로운 문제를 해결할 때 문제 해결 방법 1, 2, 3를 저장할 수 있다
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
 
 ```
 

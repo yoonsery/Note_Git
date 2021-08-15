@@ -175,5 +175,23 @@ feature A의 e, f는 전혀 다른 커밋이기 때문에 merge conflict 발생�
 
 `rebase --onto` <br>
 브랜치위에 또 다른 브랜치를 만들고..여러가지를 체이닝해서 작업할 때 유용함 <br>
-다른 브랜치에서 파생된 브랜치만 main에 rebase하는 것 <br>
+파생된 브랜치에서 한번 더 파생된 브랜치를 main(또는 부모의 부모 브랜치)에 rebase하는 것 <br>
+(파생되는 단계를 하나 없앤다고 보면된다) <br>
 쓰면 안되는 경우도 rebase와 마찬가지
+
+### Cherry picking
+
+다른 브랜치에 있는 특정 커밋만 쏙 뽑아 가져오는 것
+
+- branch에서 작업기간이 굉장히 오래 걸리거나
+- 특정한 커밋을 가지고 오고 싶을 때 사용
+
+## Stash
+
+Stash Stack이 있어서 (pop을 할 수 있음) git history에 저장하지 않고도 작업하는 내용들을 잠시 저장해 둘 수 있다 <br>
+아직 커밋할 단계는 아니라 staging area에 추가할 상황이 아닌데 다른 작업자의 브랜치를 확인해야 할 때 유용하다 <br>
+stash command를 이용해 stash stack에 잠시 저장을 해두고 다른 작업자의 브랜치를 checkout해서 확인한 다음 <br>
+stash stack에 있는 내용들을 다시 working directory로 가지고 올 수 있다
+
+- 잠시 작업중이던 내용을 stash stack에 저장해두고, 다른 브랜치로 전환을 위해 사용
+- 버그를 고칠 때 여러가지 방법으로 고치던 중에, 각각의 시도를 잠시 저장해두고 싶을 때 사용
