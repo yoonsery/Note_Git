@@ -473,16 +473,48 @@ git stash branch 브랜치명
 
 # stash를 이용해서, 브랜치들 간에 전환할 때 현재 작업하고 있는 내용들을 저장하거나
 # 새로운 문제를 해결할 때 문제 해결 방법 1, 2, 3를 저장할 수 있다
-
 ```
+
+## Undo
+
+로컬에서 작업하고 있는 staging area나, working directory에서 작업하는 내용을 초기화하기
 
 ```bash
+# 파일 수정만 했을 뿐 add는 아직 하지 않은 상태에서 초기화 하기
+git restore file.text
+git restore .  # 프로젝트 전체 안에 있는 working directory의 파일들을 초기화
 
+# git add를 한 이후라서 파일이 staging area에 있을 때 (커밋만 하면 히스토리에 남길 수 있는 상황)
+# 다시 working directory로 가져가고 싶다면?
+git restore --staged file.text
+git restore --staged .
+
+# reset은 내가 가고자 하는 포인터를 가르킬 수 있다
+git reset HEAD . # staging에 있는 모든 아이들이 다시 working directory로 옮겨감
+
+# git restore도 특정한 commit에 맞게 그때 해당하는 버전으로 파일을 초기화 할 수 있다
+# 어떤 커밋으로부터 파일을 초기화 할 건지 설정
+git restore --source=해시코드 file.text  # 해시코드에 해당하는 커밋으로 file.text를 초기화한다
+git restore --source=HEAD~2 file.text  # 현재 HEAD로부터 2번째 전의 커밋으로 file.text를 초기화함
 ```
+
+### Commit
 
 ```bash
+# commit message 변경하려면?
+git commit --amend -m "new message"  # new message라고 커밋메시지를 변경함
 
+# 커밋된 파일의 내용을 변경하려면?
+cat file.text  # 파일의 내용 확인
+open file.text  #  파일을 열어 내용을 변경하고 저장
+
+git commit --ammend  # 메시지 내용은 그대로 둘거라서 이렇게만 작성
+git show HEAD # 변경사항을 볼 수 있다
+
+# 이렇게 수정하는 것은 아직 서버에 업로드 되지 않았을 때, git push를 이용해 서버에 변경사항을 업데이트 하지 않았을 때 해야함
 ```
+
+### Reset
 
 ```bash
 

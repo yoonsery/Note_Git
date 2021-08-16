@@ -193,5 +193,23 @@ Stash Stack이 있어서 (pop을 할 수 있음) git history에 저장하지 않
 stash command를 이용해 stash stack에 잠시 저장을 해두고 다른 작업자의 브랜치를 checkout해서 확인한 다음 <br>
 stash stack에 있는 내용들을 다시 working directory로 가지고 올 수 있다
 
-- 잠시 작업중이던 내용을 stash stack에 저장해두고, 다른 브랜치로 전환을 위해 사용
+- 잠시 작업중이던 내용을 stash stack에 저장해두고, 다른 브랜치로 전환을 위해 사용 <br>
 - 버그를 고칠 때 여러가지 방법으로 고치던 중에, 각각의 시도를 잠시 저장해두고 싶을 때 사용
+
+## Undo
+
+- 모든 수정사항을 함께 commit하지 못했거나
+- commit의 메시지를 수정해야하거나
+- commit을 너무 큰 단위로 해서 잘게 나눠서 다시 커밋하고 싶을 때
+- 반대로 commit을 너무 자주해서 하나로 묶고 싶을 때
+- 버그가 도입된 커밋을 삭제하거나 되돌릴 때 ... etc
+
+⚠️ﾠgit의 history를 수정하는 것은 나의 local에 있는 것만 변경해야 한다
+
+만약 서버에 이미 업로드한 경우라면 (push를 했고 다른 개발자와 공유가 된 히스토리라면) 절대 수정하면 안된다 <br>
+push 했더라도 혼자하는 프로젝트라면 상관없다 <br>
+rebase와 마찬가지로 history를 다시 작성하는 것은 새로운 커밋을 만드는 것과 같으므로 신중하게 사용해야 한다
+
+`WIP` : Working In Progress
+
+브랜치를 전환할 때 checkout 쓰던걸 switch로 바꿈, checkout 남용되던걸 세분화함
