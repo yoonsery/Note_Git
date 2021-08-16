@@ -225,3 +225,9 @@ rebase와 마찬가지로 history를 다시 작성하는 것은 새로운 커밋
 - `git reset --hard HEAD~n`: 커밋을 히스토리에서 삭제하고 작업하던 내용들은 local에도 가져오지 말고 완전히 삭제
 
 - `git reset --hard HEAD` : 내가 local에서 작업하고 있는 내용들을 깔끔하게 초기화해 준다
+
+### Reflog ( reference log )
+
+- `git reflog`
+- `git reset --hard 해시코드`
+- 언제든지 돌아갈 수 있지만! 이전에 commit이 된 상태에서만 가능하다 (커밋하기 전 이라면 reset --hard는 주의하기)
