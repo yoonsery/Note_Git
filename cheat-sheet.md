@@ -517,10 +517,26 @@ git show HEAD # 변경사항을 볼 수 있다
 ### Reset
 
 ```bash
+git reset HEAD~2  # 2번째 이전 커밋까지 리셋, HEAD~n 부분에 해당하는 커밋의 해시코드 넣어도 된다
 
+# `git reset` 은 `git reset --mixed` 와 동일하다
+
+# git reset을 하면 초기화한 커밋은 history에서는 사라졌지만, 작업하고 있던 내용들은 ▶️ working directory ◀️에 남아있다
+
+# staging area로 초기화하기
+git reset --soft HEAD~1  # 작업하고 있던 내용들이 staging area로 이동
+
+# commit에서도 지우고 local에도 가져오지말고 완전히 삭제
+git reset --hard HEAD~n
 ```
 
+#### Reset을 되돌리려면?
+
 ```bash
+
+
+
+
 
 ```
 

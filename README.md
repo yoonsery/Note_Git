@@ -213,3 +213,15 @@ rebase와 마찬가지로 history를 다시 작성하는 것은 새로운 커밋
 `WIP` : Working In Progress
 
 브랜치를 전환할 때 checkout 쓰던걸 switch로 바꿈, checkout 남용되던걸 세분화함
+
+### Reset
+
+특정한 커밋을로 모든 것을 초기화 시켜주는 명령어
+
+`git reset` 은 `git reset --mixed` 와 동일하다
+
+- `git reset --mixed HEAD~n` : 커밋을 히스토리에서 삭제하고 작업하던 내용들은 working directory로 이동
+- `git reset --soft HEAD~n`: 커밋을 히스토리에서 삭제하고 작업하던 내용들은 staging area로 이동
+- `git reset --hard HEAD~n`: 커밋을 히스토리에서 삭제하고 작업하던 내용들은 local에도 가져오지 말고 완전히 삭제
+
+- `git reset --hard HEAD` : 내가 local에서 작업하고 있는 내용들을 깔끔하게 초기화해 준다
