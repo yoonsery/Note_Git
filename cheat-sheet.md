@@ -567,19 +567,42 @@ git revert --no-commit 해시코드     # 커밋하지않고 staging area에 추
 ### Interactive Rebashing
 
 ```bash
-# rebase할 때 특정 commit 메시지를 변경하고 싶다면 해당 커밋의 이전 해시코드부터 시작해야 한다
+# git commit amend로 최신 커밋의 타이틀이나 수정사항을 변경할 수 있었다
+# 최신 커밋이 아닌 중간의 특정 commit 메시지를 변경하고 싶다면?
+# 해당 커밋의 '이전 해시코드'를 rebase해야 한다
 
-git rebase -i 해시코드     # 지정한 해시코드부터 interactive하게 뒤에 이어지는 커밋들까지 함께 rebase한다
+git rebase -i 해시코드     # 해시코드 이후의 커밋부터 rebase 한다
 
+# 에디터가 열리면서 지정한 해시코드 이후의 모든 커밋들이 나옴
+# 해시코드 앞 pick 명령어를 원하는 동작을 수행하는 명령어로 변경하고 저장
 ```
+
+⚠️ 주의사향: 수정된 커밋을 포함해 interactive하게 뒤에 이어지는 커밋들까지 함께 rebase한다
+
+## Remote
+
+#### 깃허브 프로젝트를 내 PC로 가져오기
 
 ```bash
+git clone URL     # 깃헙 repository와 같은 이름의 폴더가 생성된다
 
+# 만약 다른 폴더명을 원한다면?
+git clone URL 폴더명
 ```
+
+#### 서버에 관련된 정보 확인하기 & 다수의 원격 추가하기
 
 ```bash
+git remote                     # 서버에 관련된 정보 확인
+git remote -v                  # show all the remote URLs
 
+git remote add server URL      # 현재 폴더에 다른 URL을 추가하는데 origin 대신 server란 이름 설정
+
+git remote show                # 원격 리스트를 보여줌
+git remote show origin         # 리모트 서버중 origin에 관련된 자세한 정보를 볼 수 있다
 ```
+
+#### 나의 커밋을 서버에 저장하기
 
 ```bash
 

@@ -335,3 +335,51 @@ git rebase -i hash        # 수정하려는 커밋의 이전 해시코드
 ```
 
 🚨 다시 강조! rebase는 서버에 push된 history를 rebase하면 안돼 (혼자 작업할 땐 상관 🙅🏻‍♀️)
+
+## Remote
+
+- server에 나의 git repository를 업로드
+  - 내 pc에 문제가 생겼을 때 | 다른 환경에서 작업하고 싶을 때 repository에 접근하기 위해
+  - 다른 개발자들과 함께 일을 할 수 있도록
+
+Distributed Version Control 분산형 시스템
+
+- `clone` : server에 이미 존재하고 있는 git repository를 가져올 때
+- `push` : local에서 커밋한 내용을 서버에 올릴 때
+- `pull` : 서버에 업데이트 된 내용을 나의 local에 업데이트 하고 싶다면
+- `merge conflict` : 서버에서 업데이트 된 내용이 내가 로컬에서 작업하고 있는 동일한 파일일 때 `pull` 사용하면 발생
+
+만약 나에게 접근권한이 없고, 오픈소스인 프로젝트라면?
+
+### 오픈소스 프로젝트 참여하기
+
+`fork` : 나의 repository에 동일하게 복사해서 가지고 오는 것  
+오픈소스 프로젝트에 참여하여 코드를 작성하고 fork된 repository에 commit을 한다  
+`PR`, `pull request`를 작성해서 오픈소스 프로젝트에 제출  
+오픈소스 관리자가 나의 PR을 리뷰하고 제안 | 승인 | 거절을 할 것이다
+
+승인 이후 만약 오픈소스 프로젝트에 다른 업데이트 된 커밋이 있다면  
+`rebase`를 이용해서 나의 repository를 최신버전으로 한 다음 (오픈소스 프로젝트와 sync 한다)  
+`merge`를 할 수 있다
+
+### 깃허브 프로젝트를 내 PC에 가져오기
+
+깃헙에서 repository를 만든다 - repository 주소를 복사한다  
+터미널에서 `git clone URL` 실행  
+repository에 있는 이름과 같은 폴더가 생성된다 만약 다른 폴더명을 원한다면  
+`git clone URL 원하는폴더명` 이렇게 원하는 폴더명을 뒤에 입력하면 된다
+
+`git remote` : 서버에 관련된 정보를 확인  
+기본적으로 서버에 있는 것의 이름은 `origin`으로 설정된다  
+`git remote -v` : origin이 어떤 걸 가리키고 있는지 정확한 정보 확인 가능
+
+#### 다수의 원격 추가
+
+현재 있는 폴더에서 다른 깃헙 링크를 추가하고 싶다면?  
+(fork한 repository에는 다수의 origin을 설정할 수 있다)  
+`git remote add server URL` : origin 대신 `server`라고 설정함
+
+`git remote show` : 원격 리스트를 보여줌  
+`git remote show origin` : origin의 관련된 정보를 자세히 볼 수 있다
+
+### 나의 커밋을 서버에 저장하기
