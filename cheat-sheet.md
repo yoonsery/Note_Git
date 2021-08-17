@@ -605,6 +605,10 @@ git remote show origin         # 리모트 서버중 origin에 관련된 자세�
 #### 나의 커밋을 서버에 저장하기
 
 ```bash
+# 서버에서도 파일을 변경하고 로컬에서도 동일한 파일을 변경한 후 git push를 하면 reject된다
+# server에 있는 변경사항은 상관없고 무조건 내 local에 있는 내용을 업데이트 하려면?
+
+git push -f            # rebase 등을 이용해서 history를 변경했을 경우에 사용
 
 ```
 
