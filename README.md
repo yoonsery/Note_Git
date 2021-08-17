@@ -246,6 +246,36 @@ rebase와 마찬가지로 history를 다시 작성하는 것은 새로운 커밋
   - 다시 돌리고 싶은 것들
   - history에 남겨놓고 싶은 것들
 
-- 이미 서버에 업데이트 된 커밋이라면 ~~`reset`~~, ~~`rebase`~~보다는 `revert`를 사용하자
+- 이미 서버에 업데이트 된 커밋이라면 ~~`reset`~~, ~~`rebase`~~ 보다는 `revert`를 사용하자
 - `revert`는 새로운 커밋을 만들어서 이미 추가된 내용을 변경하는 것이므로 기존 히스토리를 수정하는 것이 아니라서 언제든 자유롭게 이용가능
 - 커밋을 따로 만들지 않고도 `revert`가능함
+
+### Interactive Rebashing
+
+- 기존에 존재하는 history를 소리 소문없이 간편하게 변경하는 방법 (서버에 업로드된 커밋이라면 사용하지 않는게 좋다)
+- 혼자서 작업하는 경우, 커밋된 history를 변경하는 경우에 추천 👍
+
+- 어떤 커밋을 rebasing을 하는 순간, 그 커밋 뒤에 있는 모든 포인터들이 업데이트 돼야 하기 때문에 그 이후로는 전부 다 새로운 아이템이 된다
+
+- `git rebase -i 해시코드` 입력하면
+
+```bash
+pick 1d11be8 WIP
+pick fa7bbd6 Add payment client
+# 이런식으로 창이 뜨는데 해당 커밋의 해시코드 pick에 아래 명령어중 사용하려는 명령어를 쓰고 저장 후 닫는다
+
+r 1d11be8 WIP
+pick fa7bbd6 Add payment client
+
+# r이라서 메시지 변경하는 창이 뜬다 ⟶ 변경 후 저장 닫기
+```
+
+- p, pick : use commit
+- r, reword : use commit but 메시지를 변경
+- e, edit : use commit but 변경사항을 바꾼다
+- s, squash : use commit but 여러가지의 커밋을 하나로 묶어준다 (meld into)
+- f, fixup : squash와 비슷하지만 커밋메시지를 남기지않음
+- x, exec : 이 커밋부터 shell명령어를 직접적으로 이용하고 싶을 때
+- b, break : 여기서 멈춤
+- d, drop : 해당하는 커밋을 제거할 때, history에 남기고 싶지 않을 때 사용
+- l, label : label current HEAD with a name
