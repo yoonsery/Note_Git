@@ -1,7 +1,0 @@
-hello world!
-
-How are you?
-add text
-add again
-Good night
-night night

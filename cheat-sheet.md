@@ -63,23 +63,23 @@ git config --global -e
 
 ---
 
-## [Basic](#basic)
+### [📌 Basic](#basic)
 
-### [Commit](#commit)
+### [📌 Commit](#commit)
 
-### [Tagging](#tagging)
+### [📌 Tagging](#tagging)
 
-## [Branch](#branch)
+### [📌 Branch](#branch)
 
-### [Merge](#merge)
+### [📌 Merge](#merge)
 
-## [Stashing](#stashing)
+### [📌 Stashing](#stashing)
 
-## [Undo](#undo)
+### [📌 Undo](#undo)
 
-## [Remote](#remote)
+### [📌 Remote](#remote)
 
-## [Tools](#tools)
+### [📌 Tools](#tools)
 
 # 기본 명령어
 
