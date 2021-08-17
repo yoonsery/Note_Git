@@ -270,12 +270,68 @@ pick fa7bbd6 Add payment client
 # r이라서 메시지 변경하는 창이 뜬다 ⟶ 변경 후 저장 닫기
 ```
 
-- p, pick : use commit
-- r, reword : use commit but 메시지를 변경
-- e, edit : use commit but 변경사항을 바꾼다
-- s, squash : use commit but 여러가지의 커밋을 하나로 묶어준다 (meld into)
-- f, fixup : squash와 비슷하지만 커밋메시지를 남기지않음
-- x, exec : 이 커밋부터 shell명령어를 직접적으로 이용하고 싶을 때
-- b, break : 여기서 멈춤
-- d, drop : 해당하는 커밋을 제거할 때, history에 남기고 싶지 않을 때 사용
-- l, label : label current HEAD with a name
+- `p`, `pick` : use commit
+- `r`, `reword` : use commit but 메시지를 변경
+- `e`, `edit` : use commit but 변경사항을 바꾼다
+- `s`, `squash` : use commit but 여러가지의 커밋을 하나로 묶어준다 (meld into)
+- `f`, `fixup` : squash와 비슷하지만 커밋메시지를 남기지않음
+- `x`, `exec` : 이 커밋부터 shell명령어를 직접적으로 이용하고 싶을 때
+- `b`, `break` : 여기서 멈춤
+- `d`, `drop` : 해당하는 커밋을 제거할 때, history에 남기고 싶지 않을 때 사용
+- `l`, `label` : label current HEAD with a name
+
+### [실습] 1. 필요없는 커밋 삭제하기
+
+rebase를 할 때, 내가 rebase하려는 파일을 뒤에서 이어지는 commit에서 수정을 했다면 충돌이 발생한다 <br>
+이런 상황에서는 매뉴얼하게 관리해줘야 함
+
+만약 특정 커밋에서 파일을 삭제했는데 그 다음 커밋에서 삭제된 파일을 수정했다면?
+
+```bash
+git rebase -i 해시코드      #  수정하려는 커밋의 이전 해시코드
+
+# 에디터가 나오면 commit을 히스토리에서 삭제를 원하므로 'pick 해시코드' 를 'd 해시코드'로 수정 - 저장 - 종료
+# 알림창이 뜬다 - drop한 커밋에서 어떤 파일을 지웠는데 이어지는 다음 커밋에서 그 파일을 수정했어 so, 충돌발생
+# 매뉴얼하게 수동적으로 관리해주기
+
+git add .                # 충돌이 난 커밋에서 해당 파일을 그냥 사용하면 된다고 처리  (충돌된 커밋에서 새로운 파일이 생성됨)
+git rebase --continue    # 변경사항이 발생했으므로 커밋 메시지를 수정할 수 있는 창이 뜬다. 상황에 맞게 수정하거나 그대로 두고 저장 - 닫기
+```
+
+### [실습] 2. 코끼리 커밋을 분할하기
+
+commit 하나에는 한 가지만 하는 것이 중요하다 <br>
+라이브러리 하나 추가 | 기능 하나 추가 | 버그 하나 수정 <br>
+두 가지의 버그를 같이 수정하거나 두 가지의 dependency를 동시에 추가..은 🙅🏻 <br>
+그래야 히스토리 관리가 쉽고, 문제발견도 쉽고, revert도 용이함
+
+```bash
+git rebase -i 해시코드     # 수정하려는 커밋의 이전 해시코드
+
+# 에디터가 뜨면 해당하는 해시코드 앞에 있는 pick을  e 로 수정하고 저장 - 종료
+# git hist로 확인해보면 HEAD가 수정하고자 하는 커밋에 머물러 있음
+# 해당 커밋을 쪼개려면 우선 commit을 나의 working directory로 가져와야 함
+
+git reset HEAD~1          #  --mixed는 생략가능 & HEAD가 있는 이전으로 포인터를 돌려야 하므로 HEAD~1
+git add 해당파일.text               # 해당파일을 staging area 로 보냄
+git commit -m "message"           # 해당파일만 커밋함
+git add 또다른파일.text              # 또다른 파일을 staging area로 보내서 커밋할 수 있게 준비
+git commit -m "another message"   # 커밋하기
+
+# 하나의 커밋을 쪼개서 두 가지의 커밋을 만듦 - 변경사항 확인 후 맘에 들면
+git rebase --continue
+
+git hist                          # 하나의 커밋이 2개로 쪼개져서 커밋된 내용 확인가능함 신기방기
+```
+
+### [실습] 3. history를 squash하기
+
+```bash
+git rebase -i hash        # 수정하려는 커밋의 이전 해시코드
+
+# 에디터가 나오면,
+# squash 는 제일 처음에 나오는 해시코드는 대표로 pick을 해주고 그 이후의 커밋은 s로 변경한다 - 저장 - 닫기
+# 커밋 메시지 작성하는 창이 뜬다, 대표 커밋메시지 타이틀을 작성하고 저장 - 닫기
+```
+
+🚨 다시 강조! rebase는 서버에 push된 history를 rebase하면 안돼 (혼자 작업할 땐 상관 🙅🏻‍♀️)
