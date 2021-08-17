@@ -540,8 +540,13 @@ git reflog
 git reset --hard 해시코드
 ```
 
-```bash
+#### Revert 문제가 되는 커밋을 완전히 제거, 취소사항을 버전으로 남기기
 
+```bash
+git revert 해시코드  # or 해시코드 대신 HEAD~n 사용 가능
+
+# 커밋을 따로 만들지 않고 revert 하기
+git revert --no-commit 해시코드   # 커밋하지않고 staging area에 추가해 줌  (이 때 다른 코드 건드리고 함께 커밋하지마세요~)
 ```
 
 ```bash
