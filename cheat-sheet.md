@@ -269,7 +269,7 @@ git show 태그이름
 git tag
 
 # 태그 리스트중에 특정한 문자열이 있는 것만 확인하고 싶으면 (예시_ v1.0.  | v2.*)
-git tag -l "v1.0.*"
+git tag -l "v1.0.*"         # v1.0이 포함된 모든 태그를 확인할 수 있다
 
 # 실수로 만든 태그를 삭제하려면
 git tag -d 태그이름
@@ -280,7 +280,7 @@ git checkout 태그이름          # 해당 태그로 이동
 git checkout -b 브랜치명 태그이름
 
 
-# 만든 태그를 서버에도 업로드해서 연동하고 싶다면
+# 만든 특정 태그를 서버에도 업로드해서 연동하고 싶다면
 git push origin 태그이름
 
 # 모든 태그를 서버와 싱크하고 싶다면
@@ -561,7 +561,7 @@ git reset --hard 해시코드
 git revert 해시코드                 # or '해시코드' 대신 HEAD~n 사용 가능
 
 # 커밋을 따로 만들지 않고 revert 하기
-git revert --no-commit 해시코드     # 커밋하지않고 staging area에 추가해 줌 (이 때 다른 코드 건드리고 함께 커밋하지마세요~)
+git revert --no-commit 해시코드     # 커밋하지않고 staging area에 추가해 줌 (이 때 다른 코드 건드리고 함께 커밋하지 마세요~)
 ```
 
 ### Interactive Rebashing
@@ -577,7 +577,7 @@ git rebase -i 해시코드     # 해시코드 이후의 커밋부터 rebase 한�
 # 해시코드 앞 pick 명령어를 원하는 동작을 수행하는 명령어로 변경하고 저장
 ```
 
-⚠️ 주의사향: 수정된 커밋을 포함해 interactive하게 뒤에 이어지는 커밋들까지 함께 rebase한다
+⚠️ 주의사항: 수정된 커밋을 포함해 interactive하게 뒤에 이어지는 커밋들까지 함께 rebase한다
 
 ## Remote
 
@@ -608,12 +608,14 @@ git remote show origin         # 리모트 서버중 origin에 관련된 자세�
 # 서버에서도 파일을 변경하고 로컬에서도 동일한 파일을 변경한 후 git push를 하면 reject된다
 # server에 있는 변경사항은 상관없고 무조건 내 local에 있는 내용을 업데이트 하려면?
 
-git push -f            # rebase 등을 이용해서 history를 변경했을 경우에 사용
-
+git push -f           # rebase 등을 이용해서 history를 변경했을 경우에 사용
 ```
 
-```bash
+#### 이미 만들어진 프로젝트 깃허브에 추가하기
 
+```bash
+git remote add origin URL     # 깃헙에서 새로운 repository를 만들고
+git push                      # 로컬에 있는 커밋들을 서버로 push 해준다
 ```
 
 ```bash

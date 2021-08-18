@@ -385,3 +385,20 @@ repository에 있는 이름과 같은 폴더가 생성된다 만약 다른 폴�
 ### 나의 커밋을 서버에 저장하기
 
 `SSH` (secure shell protocol)로 안전 | 간편하게 push하기
+`git push`
+
+rebase 등을 이용해서 history를 변경했을 경우에 서버와 충돌이 일어나면, 서버의 내용은 무시하고 내 로컬의 변경사항을 강제로 push하는  
+`git push -f` 를 사용한다
+
+### 이미 만들어진 프로젝트를 깃허브에 추가하기
+
+깃헙에서 새로운 리파지토리 만들고 터미널에서 `git remote add URL`로 추가해준다
+로컬에 있는 커밋들을 서버로 push 해준다
+
+### `fetch` vs `pull`
+
+### fetch 심화
+
+### pull 심화
+
+### 오픈소스 프로젝트 참가방법
