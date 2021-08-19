@@ -490,3 +490,54 @@ merge보다 히스토리가 깔-끔✨
  bisect를 이용해 해당하는 커밋을 찾았다면 `git bisect reset`을 이용하면 원래 브랜치로 돌아간다
 
 #### 터미널 UI 인터페이스 툴
+
+**tig**
+`brew install tig` 로 설치
+
+history를 간단하게 확인해 볼 수 있고, 커밋에서 enter - 커밋 안의 내용을 확인할 수 있다  
+commit title, description을 볼 수 있고 수정된 파일들도 확인해 볼 수 있다  
+파일에서 enter - 파일 안에서도 내용을 확인 할 수 있다  
+`g` 명령어를 사용하면 `grep` 기능도 사용할 수 있고, `/`는 문자열 검색 기능
+`q` 입력하면 이전 메인창으로 이동
+이렇게 vim의 명령어를 사용해서 간편하게 사용할 수 있다
+
+---
+
+- 대부분은 터미널과 tig를 주로 이용
+
+- UI를 이용할 때 :
+  local에서 작업하는 내용들이 굉장히 많을 때 터미널에서 하기에 복잡한 경우가 있다  
+  (unstaged files에 있는) 수정한 내용을 간편하게 하나씩 확인해보다가  
+  어느 특정 부분만 추가하고 싶을 때 해당하는 부분만 선택해서 `stage line`을 클릭하면  
+  해당하는 것만 쏙쏙 추가할 수 있다  
+  이렇게 간단히 확인하면서 부분적으로 staging에 추가할 때, 부분적으로 commit할 때 UI를 사용한다
+
+- 복잡한 merge tool을 이용할 때 UI를 활용함
+
+---
+
+### git 설정
+
+- 🚀 `gh` : `git reset --hard HEAD` | local에서 작업한 내용을 초기화
+- 🚀 `gss` : `git stash save` | local에서 작업중인 내용을 stash에 세이브
+- 🚀 `gsl` : `git stash list`
+- 🚀 `gsa` : `git stash apply`
+- 🚀 `gs` : `git status`
+- 🚀 `git ca` : `git add .` + `git commit -m`
+
+앞에 `git`명령어 자체를 단축어로 쓰려면? (`gs`처럼..)  
+터미널에서 `open ~/.zshrc` 입력하면 shell 자체에 있는 alias 등록가능
+
+---
+
+#### commit 하나당 한 가지만 하기
+
+한 가지만 추가 | 한 가지만 리팩토링 | 하나의 버그만 해결
+
+#### 한가지의 branch에서 작업하기
+
+원활한 협업을 위해  
+기능별로 | 해결하는 버그별로 branch 만들어서 일하기
+
+- 오전에 일을 시작하기 전에 항상 server에 있는 git repository를 최신버전으로 업데이트
+- 퇴근하기 전에 일이 마무리 되었다면 `push`를 해서 나의 commit을 server에 올려두기

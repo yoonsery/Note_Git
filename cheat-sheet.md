@@ -61,8 +61,6 @@ git config --global -e
 
 ```
 
----
-
 ## List
 
 #### [📌 Basic](#basic)
@@ -88,6 +86,8 @@ git config --global -e
 #### [📌 Pull](#pull)
 
 #### [📌 오픈소스 프로젝트 참가하는 방법](#오픈소스-프로젝트-참가하는-방법)
+
+## <br>
 
 # 기본 명령어
 
@@ -707,16 +707,4 @@ Blame
 
 ```bash
 git blame file.text       # 커밋된 해시코드와 누가 도입했는지 날짜, 시간도 확인가능
-```
-
-Bisect
-
-```bash
-
-```
-
-Config
-
-```bash
-
 ```
