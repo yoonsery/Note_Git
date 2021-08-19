@@ -397,7 +397,17 @@ rebase 등을 이용해서 history를 변경했을 경우에 서버와 충돌이
 
 ### `fetch` vs `pull`
 
-### fetch 심화
+git에서 로컬과 서버에서 함께 연동해서 작업하는 경우에  
+나의 로컬에서는 서버에 있는 브랜치를 origin이라고 표기한다
+
+server에 새로운 commit이 발생했다면
+
+- `fetch`: 서버에 있는 git history를 받아와서 나의 git history를 업데이트 한다, 작업환경 HEAD는 그대로 유지됨  
+   즉 local main branch는 여전히 그대로 (서버에서 받아온 새로 추가된 커밋을 가리키고 있지 않음)
+- `pull`: 서버에 있는 history를 가지고 오면서 나의 로컬에 있는 내용을 함께 merge를 한다,  
+   새로운 커밋과 함께 origin main과 나의 main이 동시에 새롭게 추가된 커밋을 가리키고 있다
+
+### fetch
 
 ### pull 심화
 

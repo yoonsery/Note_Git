@@ -63,23 +63,27 @@ git config --global -e
 
 ---
 
-### [📌 Basic](#basic)
+## List
 
-### [📌 Commit](#commit)
+#### [📌 Basic](#basic)
 
-### [📌 Tagging](#tagging)
+#### [📌 Commit](#commit)
 
-### [📌 Branch](#branch)
+#### [📌 Tagging](#tagging)
 
-### [📌 Merge](#merge)
+#### [📌 Branch](#branch)
 
-### [📌 Stashing](#stashing)
+#### [📌 Merge](#merge)
 
-### [📌 Undo](#undo)
+#### [📌 Stashing](#stashing)
 
-### [📌 Remote](#remote)
+#### [📌 Undo](#undo)
 
-### [📌 Tools](#tools)
+#### [📌 Remote](#remote)
+
+#### [📌 Tools](#tools)
+
+#### [📌 Fetch](#fetch)
 
 # 기본 명령어
 
@@ -616,6 +620,38 @@ git push -f           # rebase 등을 이용해서 history를 변경했을 경�
 ```bash
 git remote add origin URL     # 깃헙에서 새로운 repository를 만들고
 git push                      # 로컬에 있는 커밋들을 서버로 push 해준다
+```
+
+### fetch
+
+```bash
+# fetch는 server의 업데이트 된 history를 가지고 온다
+# origin(서버)에 있는 main과 origin의 HEAD는 최신 커밋을 가리키지만
+# local의 HEAD는 여전히 업데이트 전의 커밋을 가리키고 있다
+# So, 현재 작업하고 있는 HEAD는 그대로 유지하면서 서버에 업데이트 된 history 정보만 가지고 오고싶을 때 사용
+
+git fetch origin             # origin자리에 (서버가 여러개면 해당하는)서버이름을 적어준다
+git fetch origin main        # 또는 서버에 여러가지의 branch가 있다면 특정한 branch만 가지고 올 수 있다
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
 ```
 
 ```bash
