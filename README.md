@@ -300,8 +300,8 @@ git rebase --continue    # 변경사항이 발생했으므로 커밋 메시지�
 
 ### [실습] 2. 코끼리 커밋을 분할하기
 
-commit 하나에는 한 가지만 하는 것이 중요하다 <br>
-라이브러리 하나 추가 | 기능 하나 추가 | 버그 하나 수정 <br>
+commit 하나에는 한 가지만 하는 것이 중요하다  
+라이브러리 하나 추가 | 기능 하나 추가 | 버그 하나 수정  
 두 가지의 버그를 같이 수정하거나 두 가지의 dependency를 동시에 추가..는 🙅🏻  
 그래야 히스토리 관리가 쉽고, 문제발견도 쉽고, revert도 용이함
 
@@ -392,7 +392,7 @@ rebase 등을 이용해서 history를 변경했을 경우에 서버와 충돌이
 
 ### 이미 만들어진 프로젝트를 깃허브에 추가하기
 
-깃헙에서 새로운 리파지토리 만들고 터미널에서 `git remote add URL`로 추가해준다
+깃헙에서 새로운 리파지토리 만들고 터미널에서 `git remote add URL`로 추가해준다  
 로컬에 있는 커밋들을 서버로 push 해준다
 
 ### `fetch` vs `pull`
@@ -409,6 +409,36 @@ server에 새로운 commit이 발생했다면
 
 ### fetch
 
-### pull 심화
+fetch는 server의 업데이트 된 history를 가지고 온다  
+origin(서버)에 있는 main과 origin의 HEAD는 최신 커밋을 가리키지만  
+local의 HEAD는 여전히 업데이트 전의 커밋을 가리키고 있다  
+So, 현재 작업하고 있는 HEAD는 그대로 유지하면서 서버에 업데이트 된 history 정보만 가지고 오고싶을 때 사용  
+서버에 여러개의 branch가 있다면 특정한 브랜치만 가져올 수도 있다 (like `git fetch origin branch`)
+
+서버에 있는 history 정보를 업데이트 해서 server에서 어떤 일들이 발생하고 있는지, 누가 어떤 일을 했는지 확인하고 싶은 경우에 많이 사용한다
+
+### pull
+
+서버에 있는 내용을 받아와서 나의 local 버전도 서버와 동일하게 만들고 싶을 때 사용
+
+**만약 local과 server에서 동일한 파일을 수정해서 서로 새로운 commit이 있는 경우라면?**
+
+이 상태에서 `git pull`을 사용하면 merge conflict 발생한다  
+merge conflict: ( 다른 branch들 사이에서 || server 와 local에서 ) 동일한 파일을 수정했을 때 발생
+
+해결방법은 앞에서 배운 `git mergetool` 사용해서 원하는 내용을 병합한 후 저장 - 닫기  
+터미널에서도 `⌘ + c`로 종료 후 `git add .`로 모두 staging area로 옮긴 후 `git merge --continue`  
+새로운 커밋 메시지 작성창이 뜬다 - 저장 - 종료  
+이렇게 하면 기본적으로 merge가 발생한다
+
+~~`merge`~~ 대신 `rebase`를 사용하고 싶다면?
+
+`git pull --rebase` 을 사용하면 server에 있는 커밋을 가지고 온 상태에서 local에서 만든 커밋을 적용하려고 할 때 conflict이 발생한다  
+`git mergetool` 실행 - 수정 - 저장 - 종료 - 터미널에서도 `⌘ + c`로 종료 - `git rebase --continue`  
+커밋 메시지 작성창 - 저장 - 종료 - `git push` 로 서버에도 업데이트
+merge보다 히스토리가 깔-끔✨
+
+서버에 있는 커밋들은 그대로 가지고 와서 기존에 내 local에서 커밋이 되었던 것만 rebase를 했기 때문에 그것만 새로운 커밋이 되었고  
+서버에서 받아온 커밋은 그대로 유지된다
 
 ### 오픈소스 프로젝트 참가방법

@@ -85,6 +85,8 @@ git config --global -e
 
 #### [📌 Fetch](#fetch)
 
+#### [📌 Pull](#pull)
+
 # 기본 명령어
 
 ## Basic
@@ -624,6 +626,8 @@ git push                      # 로컬에 있는 커밋들을 서버로 push 해
 
 ### fetch
 
+서버에 있는 history 정보를 업데이트 해서 server에서 어떤 일들이 발생하고 있는지, 누가 어떤 일을 했는지 확인하고 싶은 경우에 많이 사용한다
+
 ```bash
 # fetch는 server의 업데이트 된 history를 가지고 온다
 # origin(서버)에 있는 main과 origin의 HEAD는 최신 커밋을 가리키지만
@@ -634,12 +638,32 @@ git fetch origin             # origin자리에 (서버가 여러개면 해당하
 git fetch origin main        # 또는 서버에 여러가지의 branch가 있다면 특정한 branch만 가지고 올 수 있다
 ```
 
-```bash
+### pull
 
+서버에 있는 내용을 받아와서 나의 local 버전도 서버와 동일하게 만들고 싶을 때 사용한다
+
+만약 로컬과 서버에서 동일한 파일을 수정해서 서로 새로운 커밋이 있는 경우
+
+**git pull 사용시 ( 기본적으로 merge )**
+
+```bash
+git pull                    # merge conflict 발생
+git mergetool               # 원하는 내용으로 병합한 후 저장 - 종료
+⌘ + c                       # 터미널 종료
+git add .                   # staging area로 옮긴다
+git merge --continue        # 커밋 메시지 작성창 - 저장 - 종료
 ```
 
-```bash
+**git pull --rebase 사용시**
 
+```bash
+git pull --rebase           # 서버의 변경사항은 이미 가져왔고 그 위에 내가 로컬에서 만든 커밋을 적용할 때 conflict 발생
+git mergetool               # 수정 - 저장 - 종료
+⌘ + c                       # 터미널 종료
+git rebase --continue       # 커밋 메시지 창 - 저장 - 종료
+git push                    # 서버에도 업데이트 해준다
+
+                            # git pull 보다 git pull --rebase 가 히스토리가 깔끔
 ```
 
 ```bash
