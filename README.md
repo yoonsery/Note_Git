@@ -438,7 +438,9 @@ merge conflict: ( 다른 branch들 사이에서 || server 와 local에서 ) 동�
 커밋 메시지 작성창 - 저장 - 종료 - `git push` 로 서버에도 업데이트
 merge보다 히스토리가 깔-끔✨
 
-서버에 있는 커밋들은 그대로 가지고 와서 기존에 내 local에서 커밋이 되었던 것만 rebase를 했기 때문에 그것만 새로운 커밋이 되었고  
-서버에서 받아온 커밋은 그대로 유지된다
+서버에 있는 커밋들은 그대로 가지고 와서 기존에 내 local에서 커밋이 되었던 것만 rebase를 했기 때문에  
+로컬의 커밋만 새로운 커밋이 되었고 서버에서 받아온 커밋은 그대로 유지된다
 
 ### 오픈소스 프로젝트 참가방법
+
+[자세한 방법은 여기서 👀](https://github.com/yoonsery/learning-git/blob/main/cheat-sheet.md/#list)

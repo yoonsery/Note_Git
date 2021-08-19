@@ -87,6 +87,8 @@ git config --global -e
 
 #### [📌 Pull](#pull)
 
+#### [📌 오픈소스 프로젝트 참가하는 방법](#오픈소스-프로젝트-참가하는-방법)
+
 # 기본 명령어
 
 ## Basic
@@ -666,9 +668,35 @@ git push                    # 서버에도 업데이트 해준다
                             # git pull 보다 git pull --rebase 가 히스토리가 깔끔
 ```
 
-```bash
+#### 오픈소스 프로젝트 참가하는 방법
 
+처음부터 거창한 프젝을 하기보다 코멘트나 typo를 수정하는 것부터 시작해서 작은 이슈 해결하며 기여해나가기 💪🏻
+
+```bash
+# 오픈소스 프로젝트의 깃헙페이지에서 `fork` 버튼 클릭
+# 나의 깃헙페이지에 fork된 프로젝트 리파지토리가 생김
+
+git clone URL
+cd 폴더명                   # 해당 폴더로 이동
+git switch -C 브랜치명       # 새로운 브랜치를 만들고 그 브랜치로 이동
+
+open file.text             # 수정하려는 파일을 열어서 코드 수정
+git commit -am "message"   # 커밋메시지 작성과 동시에 staging area 추가 ( add + commit )
+git push origin 브랜치명     # 아까 만들고 switch한 브랜치명 작성
 ```
+
+그럼 'Create a pull request for '브랜치명' on GitHub by visiting: URL 주소' 가 뜬다  
+또는 내 깃헙 리파지토리에 Compare & pull request 버튼이 있는 배너가 뜬다
+
+Open a pull request  
+① fork한 원래의 repository main에 ② 내가 수정한 repository 를 선택함  
+PR은 가능하면 자세하게 설명하는 것이 좋다 타이틀은 간결하게  
+본론에서는 좀 더 자세히 설명하기 (마크다운 지원된다)  
+정확하게 어떤걸 고쳤는지, 어떤 걸 리팩토링 했는지, 무엇을 추가했는지 자세하게 작성  
+아래에 변경사항이 정확한지 한 번 더 확인하고  
+오픈소스 담당자가 수정해도 괜찮으면 'Allow edits by maintainers' 체크하기  
+`Create pull request` 버튼 클릭  
+오픈소스 프로젝트의 Pull request 페이지에 만들어진 것을 확인 할 수 있다
 
 ```bash
 
